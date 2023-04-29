@@ -19,8 +19,8 @@ func init() {
 func main() {
 	r := gin.Default()
 	r.Use(middleware.Core())
-	r.POST("/signup", controllers.Signup)
-	r.POST("/login", controllers.Login)
-	r.GET("/validate", middleware.RequireAuth, controllers.Validate)
+	r.POST("/signup", middleware.Core(), controllers.Signup)
+	r.POST("/login", middleware.Core(), controllers.Login)
+	r.GET("/validate", middleware.Core(), middleware.RequireAuth, controllers.Validate)
 	r.Run(":3000")
 }
